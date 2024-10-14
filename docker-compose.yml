@@ -1,4 +1,3 @@
-version: '2.1'
 services:
   rabbitmq:
     image: rabbitmq:3-management
@@ -11,6 +10,8 @@ services:
         max-file: "10"
 
   config:
+    build:
+      context: ./config
     environment:
       CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
     image: sqshq/piggymetrics-config
@@ -21,6 +22,8 @@ services:
         max-file: "10"
 
   registry:
+    build:
+      context: ./registry
     environment:
       CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
     image: sqshq/piggymetrics-registry
@@ -36,6 +39,8 @@ services:
         max-file: "10"
 
   gateway:
+    build:
+      context: ./gateway
     environment:
       CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
     image: sqshq/piggymetrics-gateway
@@ -51,6 +56,8 @@ services:
         max-file: "10"
 
   auth-service:
+    build:
+      context: ./auth-service
     environment:
       CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
       NOTIFICATION_SERVICE_PASSWORD: $NOTIFICATION_SERVICE_PASSWORD
@@ -68,6 +75,8 @@ services:
         max-file: "10"
 
   auth-mongodb:
+    build:
+      context: ./mongodb
     environment:
       MONGODB_PASSWORD: $MONGODB_PASSWORD
     image: sqshq/piggymetrics-mongodb
@@ -78,11 +87,15 @@ services:
         max-file: "10"
 
   account-service:
+    build:
+      context: ./account-service
     environment:
       CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
       ACCOUNT_SERVICE_PASSWORD: $ACCOUNT_SERVICE_PASSWORD
       MONGODB_PASSWORD: $MONGODB_PASSWORD
     image: sqshq/piggymetrics-account-service
+    ports:
+      - 6000:6000
     restart: always
     depends_on:
       config:
@@ -93,6 +106,8 @@ services:
         max-file: "10"
 
   account-mongodb:
+    build:
+      context: ./mongodb
     environment:
       INIT_DUMP: account-service-dump.js
       MONGODB_PASSWORD: $MONGODB_PASSWORD
@@ -104,11 +119,15 @@ services:
         max-file: "10"
 
   statistics-service:
+    build:
+      context: ./statistics-service
     environment:
       CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
       MONGODB_PASSWORD: $MONGODB_PASSWORD
       STATISTICS_SERVICE_PASSWORD: $STATISTICS_SERVICE_PASSWORD
     image: sqshq/piggymetrics-statistics-service
+    ports:
+      - 7000:7000
     restart: always
     depends_on:
       config:
@@ -119,6 +138,8 @@ services:
         max-file: "10"
 
   statistics-mongodb:
+    build:
+      context: ./mongodb
     environment:
       MONGODB_PASSWORD: $MONGODB_PASSWORD
     image: sqshq/piggymetrics-mongodb
@@ -129,11 +150,15 @@ services:
         max-file: "10"
 
   notification-service:
+    build:
+      context: ./notification-service
     environment:
       CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
       MONGODB_PASSWORD: $MONGODB_PASSWORD
       NOTIFICATION_SERVICE_PASSWORD: $NOTIFICATION_SERVICE_PASSWORD
     image: sqshq/piggymetrics-notification-service
+    ports:
+      - 8000:8000
     restart: always
     depends_on:
       config:
@@ -144,6 +169,8 @@ services:
         max-file: "10"
 
   notification-mongodb:
+    build:
+      context: ./mongodb
     image: sqshq/piggymetrics-mongodb
     restart: always
     environment:
@@ -154,6 +181,8 @@ services:
         max-file: "10"
 
   monitoring:
+    build:
+      context: ./monitoring
     environment:
       CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
     image: sqshq/piggymetrics-monitoring
@@ -169,6 +198,8 @@ services:
         max-file: "10"
 
   turbine-stream-service:
+    build:
+      context: ./turbine-stream-service
     environment:
       CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
     image: sqshq/piggymetrics-turbine-stream-service

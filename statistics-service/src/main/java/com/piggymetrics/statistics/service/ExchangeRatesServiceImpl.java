@@ -1,7 +1,7 @@
 package com.piggymetrics.statistics.service;
 
 import com.google.common.collect.ImmutableMap;
-import com.piggymetrics.statistics.client.ExchangeRatesClient;
+import com.piggymetrics.statistics.client.ExchangeRatesClientFallback;
 import com.piggymetrics.statistics.domain.Currency;
 import com.piggymetrics.statistics.domain.ExchangeRatesContainer;
 import org.slf4j.Logger;
@@ -23,7 +23,7 @@ public class ExchangeRatesServiceImpl implements ExchangeRatesService {
 	private ExchangeRatesContainer container;
 
 	@Autowired
-	private ExchangeRatesClient client;
+	private ExchangeRatesClientFallback client;
 
 	/**
 	 * {@inheritDoc}

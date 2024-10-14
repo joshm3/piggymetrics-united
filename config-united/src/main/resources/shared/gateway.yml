@@ -1,0 +1,73 @@
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 20000
+
+# eureka:
+#   client:
+#     serviceUrl:
+#       defaultZone: http://localhost:8761/eureka/
+
+logging:
+  level:
+    org.springframework.cloud.netflix.zuul: DEBUG
+    com.netflix.loadbalancer: DEBUG
+
+ribbon:
+  ReadTimeout: 20000
+  ConnectTimeout: 20000
+
+zuul:
+  # ignoredServices: '*'
+  host:
+    connect-timeout-millis: 20000
+    socket-timeout-millis: 20000
+
+  routes:
+    united-monolith-accounts:
+      path: /accounts/**
+      serviceId: united-monolith
+      stripPrefix: false
+      sensitiveHeaders:
+
+    united-monolith-statistics:
+      path: /statistics/**
+      serviceId: united-monolith
+      stripPrefix: false
+      sensitiveHeaders:
+
+    united-monolith-notifications:
+      path: /notifications/**
+      serviceId: united-monolith
+      stripPrefix: false
+      sensitiveHeaders:
+
+    auth-service:
+        path: /uaa/**
+        url: http://auth-service:5000
+        stripPrefix: false
+        sensitiveHeaders:
+
+    # account-service:
+    #     path: /accounts/**
+    #     serviceId: account-service
+    #     stripPrefix: false
+    #     sensitiveHeaders:
+
+    # statistics-service:
+    #     path: /statistics/**
+    #     serviceId: statistics-service
+    #     stripPrefix: false
+    #     sensitiveHeaders:
+
+    # notification-service:
+    #     path: /notifications/**
+    #     serviceId: notification-service
+    #     stripPrefix: false
+    #     sensitiveHeaders:
+
+server:
+  port: 4000

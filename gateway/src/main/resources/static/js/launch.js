@@ -80,10 +80,14 @@ $(window).load(function(){
         global.mobileClient = true;
 	}
 
-    $.getJSON("https://api.exchangeratesapi.io/latest?base=RUB&symbols=EUR,USD", function( data ) {
-        global.eur = 1 / data.rates.EUR;
-        global.usd = 1 / data.rates.USD;
-    });
+    // $.getJSON("https://api.exchangeratesapi.io/latest?base=RUB&symbols=EUR,USD", function( data ) {
+    //     global.eur = 1 / data.rates.EUR;
+    //     global.usd = 1 / data.rates.USD;
+    // });
+
+	// that api is no longer available, here are approximate rates in 10/2024
+	global.eur = 1.09;
+	global.usd = 1.0;
 
 	var account = getCurrentAccount();
 
