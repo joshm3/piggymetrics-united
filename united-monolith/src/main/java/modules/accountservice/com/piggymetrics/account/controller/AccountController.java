@@ -26,7 +26,6 @@ public class AccountController {
     @RequestMapping(path = "/{name}", method = RequestMethod.GET)
     public Account getAccountByName(@PathVariable
     String name) {
-        System.err.println("in account controller " + name);
         return accountService.findByName(name);
     }
 

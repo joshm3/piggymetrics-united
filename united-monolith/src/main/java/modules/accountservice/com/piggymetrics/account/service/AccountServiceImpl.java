@@ -35,9 +35,6 @@ public class AccountServiceImpl implements AccountService {
      */
     @Override
     public Account findByName(String accountName) {
-        System.err.println("inf find by name " + accountName);
-        Account account = repository.findByName(accountName);
-        System.err.println(account);
         Assert.hasLength(accountName);
         return repository.findByName(accountName);
     }
