@@ -1,0 +1,1 @@
+{"note":"test note","incomes":[{"income_id":1,"title":"income","icon":"graphs","currency":"USD","period":"MONTH","amount":"1234","converted":"1234.000"}],"expenses":[{"expense_id":1,"title":"groceries","icon":"cart","currency":"USD","period":"MONTH","amount":"29","converted":"29.000"}],"saving":{"amount":0,"capitalization":false,"deposit":false,"currency":"USD","interest":0}}

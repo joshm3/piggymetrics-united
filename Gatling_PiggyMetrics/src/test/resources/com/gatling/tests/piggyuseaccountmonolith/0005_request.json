@@ -1,0 +1,1 @@
+{"note":"notes","incomes":[{"income_id":1,"title":"12344","icon":"wallet","currency":"USD","period":"MONTH","amount":"1234","converted":"1234.000"}],"expenses":[{"expense_id":1,"title":"1233","icon":"cart","currency":"USD","period":"MONTH","amount":"123","converted":"123.000"}],"saving":{"amount":11,"capitalization":true,"deposit":true,"currency":"USD","interest":"1"}}
